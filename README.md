@@ -2,7 +2,7 @@
 Text-based game for engg1340/comp2113 project
 
 ## Team members:
-Kwok Shi Ming Jasmine
+Kwok Shi Ming Jasmine \n
 Wong Hei Ching Kira
 
 ## Game description:
