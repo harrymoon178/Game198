@@ -57,10 +57,10 @@ Text-based game for engg1340/comp2113 project
   - each winning rounds ++score
   - each winning levels ++score 
   - each gameovers -> reset to 0
-- 'single player' mode AND 'vs Computer' mode (simple AI) 
 - level system 
   - higher level gains more score
     - i.e. level 1 ++score, level 2 x2 score, level 3 x3 score ... 
+- 'single player' mode AND 'vs Computer' mode (simple AI) 
 
 **(5)**: Makefile, header file, function files and the main file
 
