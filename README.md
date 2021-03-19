@@ -39,6 +39,7 @@ Text-based game for engg1340/comp2113 project
 4. File input/output (e.g., for loading/saving game status)
 5. Program codes in multiple files
 
+- random card generation **(1)**
 - account system: **(2,3,4)**
   - unique id name
   - supports multiple single players
@@ -56,7 +57,6 @@ Text-based game for engg1340/comp2113 project
   - each winning rounds ++score
   - each winning levels ++score 
   - each gameovers -> reset to 0
-- random card generation **(1)**
 - 'single player' mode AND 'vs Computer' mode (simple AI) 
 - level system 
   - higher level gains more score
