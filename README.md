@@ -28,8 +28,9 @@ Text-based game for engg1340/comp2113 project
     - card revealer
     - x2 money
     - x2 score
-  - each gameovers --money
   - each winning rounds ++money
+  - each resurrections --money
+  - each gameovers --money
 - score system
   - each winning rounds ++score
   - each winning levels ++score
