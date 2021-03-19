@@ -32,12 +32,19 @@ Text-based game for engg1340/comp2113 project
    - ++moeny 
                                                                                                                                                                         
 ## List of features: (with code requirements 1-5)
-- account system
+
+1. Generation of random game sets or events
+2. Data structures for storing game status
+3. Dynamic memory management
+4. File input/output (e.g., for loading/saving game status)
+5. Program codes in multiple files
+
+- account system: **(2,3,4)**
   - unique id name
   - supports multiple single players
   - leaderboard system
     - only suitable in 'single player' mode
-- money system:
+- money system: **(2,3,4)**
   - before each level, the player can buy items in the store
     - card revealer
     - x2 money
@@ -45,18 +52,15 @@ Text-based game for engg1340/comp2113 project
   - each winning rounds ++money
   - each resurrections --money
   - each gameovers --money
-- score system
+- score system: **(2,3,4)**
   - each winning rounds ++score
   - each winning levels ++score 
   - each gameovers -> reset to 0
-- random card
-- 'single player' mode AND 'vs Computer' mode (simple AI)
+- random card generation **(1)**
+- 'single player' mode AND 'vs Computer' mode (simple AI) 
 - level system 
   - higher level gains more score
     - i.e. level 1 ++score, level 2 x2 score, level 3 x3 score ... 
 
-1. Generation of random game sets or events
-2. Data structures for storing game status
-3. Dynamic memory management
-4. File input/output (e.g., for loading/saving game status)
-5. Program codes in multiple files
+**(5)**: Makefiles, header file, function files and the main file
+
