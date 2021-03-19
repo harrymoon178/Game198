@@ -39,7 +39,7 @@ Text-based game for engg1340/comp2113 project
 4. File input/output (e.g., for loading/saving game status)
 5. Program codes in multiple files
 
-- random card generation **(1)**
+- random card generation and status storage **(1,2)**
 - account system: **(2,3,4)**
   - unique id name
   - supports multiple single players
