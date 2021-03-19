@@ -62,5 +62,5 @@ Text-based game for engg1340/comp2113 project
   - higher level gains more score
     - i.e. level 1 ++score, level 2 x2 score, level 3 x3 score ... 
 
-**(5)**: Makefiles, header file, function files and the main file
+**(5)**: Makefile, header file, function files and the main file
 
