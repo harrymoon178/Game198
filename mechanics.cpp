@@ -11,82 +11,63 @@ void levelUp(User usr) {
   usr.level++;
 }
 
-bool gameOver(User usr) {
+bool gameOver(User usr) { //if not enough money -> directly skip 
   int option;
   int amount = pow(usr.level, 2)*100;
-  
   cout << "GAME OVER." << endl;
+  if (usr.money<amount)
+  return 0;
   cout << "1. Pay $" << amount << " to resurrect." << endl;
   cout << "2. Start over." << endl;
   cin >> option;
 
-  bool resurrect = true;
-  while ((usr.money < amount) && cont)
-    if (option == 1 )
-      if (usr.money < amount)
-        cout << "You don't have enough money." << endl;
-      else {
-        usr.money -= amount;
-        cout << "-$" << amount << endl;
-      }
-    else if (option == 2) {
-      usr.reset();
-      resurrect = false;
-    }
-  
-  return resurrect;
+  bool cont;
+  if (option == 1) {
+    usr.money -= amount;
+    cont = true;
+  }
+  else if (option == 2) {
+    usr.reset();
+    cont = false;
+  }
+  return cont;
 }
 
-void printInventory(bool * p_inv) {
+void printInventory(int * p_inv) {
   string items[] = {"x2 money", "x2 score", "card revealer"};
-  const int size = sizeof(items) / sizeof(items[0]);
-  
   cout << "Inventory: " << endl;
-  for (int i = 0; i < size; i++)
-    if (p_inv[i] == 1)
-      cout << i+1 << ". " << items[i] << endl;;
+  for (int i = 0; i < sizeof(items)/sizeof(items[0]); i++)
+    cout << items[i] << " - "<< p_inv[i] << ", ";
+  cout << endl;
 }
 
-void printStore(int items[], int prices[], const int size, bool inv[]) {
-  for (int i = 0; i < size; i++)
-    if (inv[i] != 1)
-      cout << i+1 << ". " << items[i] << " $" << prices[i] << endl;
-    else
-      cout << i+1 << ". " << items[i] << " is sold out." << endl;
-}
-
-bool * store(User usr) {
+int * store(User usr) { //if not enough money -> cant buy
+  int prices[] = {usr.level*100, usr.level*200, usr.level*300};
   string items[] = {"x2 money", "x2 score", "card revealer"};
-  int prices[] = {usr.level*100, usr.level*100, usr.level*200};
-  const int size = sizeof(items) / sizeof(items[0]);
-  bool inventory[size] = {}
-  
+  int usr_inventory[] = {0, 0, 0};
+  int *p_inv = usr_inventory;
   cout << "Welcome to the store!" << endl;
   cout << "You may choose to purchase items for the next level: " << endl;
-  
-  while (1) {
-    printStore(items, prices, size, inventory);
+
+  for (int i = 0; i < sizeof(items)/sizeof(items[0]); i++)
+    cout << i+1 << ". " << items[i] << " $" << prices[i] << endl;
+
+  int item;
+  cout << "Input item no. or input any key to leave the store: " << endl;
+  cin >> item;
+  while (item == 1 || item == 2 || item == 3){
+    int quantity;
+    cout << "How many " << items[item-1] << " do you want? ";
+    cin >> quantity;
+	if (user.money < price[item-1]*quantity){
+		cout << "Sorry, you do not have enough money." << endl;
+	}
+	else{
+    usr.money -= prices[item-1]*quantity;
+    usr_inventory[item-1] += quantity;
+    cout << "You bought " << quantity << " " << items[item-1] << "(s) for $" << prices[item-1]*quantity << endl;
+	}
     cout << "Input item no. or input any key to leave the store: " << endl;
-    
-    int item;
     cin >> item;
-    
-    if (item == 1 || item == 2 || item == 3)
-      if (inventory[item-1] == 1)
-        cout << "Item is sold" << endl;
-      else {
-        if (usr.money < prices)
-          cout << "You don't have enough money." << endl;
-        else {
-          usr.money -= prices[item-1];
-          usr_inventory[item-1] = 1;
-          cout << "You bought a " << items[item-1] << " for $" << prices[item-1] << endl;
-        }
-      }
-    else
-      break;
   }
-  
-  bool *p_inv = inventory;
   return p_inv;
-}
