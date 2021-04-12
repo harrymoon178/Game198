@@ -1,5 +1,12 @@
-#ifdef CARD_H
+#ifndef CARD_H
 #define CARD_H
+
+#define SPADE   "\xE2\x99\xA0"
+#define CLUB    "\xE2\x99\xA3"
+#define HEART   "\xE2\x99\xA5"
+#define DIAMOND "\xE2\x99\xA6"
+
+using namespace std;
 
 struct Card {
   int idx;
@@ -12,11 +19,5 @@ struct Card {
 
   void print_card();
 };
-
-bool sameCard(int card_idx);
-
-void randomCard();
-
-void printCards();
 
 #endif
