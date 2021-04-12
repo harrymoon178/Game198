@@ -2,24 +2,23 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-#include "user.h"
 #include "menu.h"
-
-using namespace std;
+#include "mechanics.h"
+#include "game.h"
 
 vector<User> users;
 
-void selectMode(User usr) {
+void selectMode(User &usr) {
   cout << "Choose a game mode: " << endl;
   cout << "1 - Single Player" << endl;
   cout << "2 - vsComputer" << endl;
-
+  cout << ">> ";
   int mode;
   cin >> mode;
-  //if (mode == 1)
-    //single(usr);
+  if (mode == 1)
+    single(usr);
   //else if (mode == 2)
-    //vsComputer(usr);
+  //  vsComputer(usr);
 }
 
 bool sameName(string name) {
@@ -46,12 +45,13 @@ void newUser() {
 
 void selectUser() {
   if (users.size() == 0)
-    cout << "No player record." << endl;
+    cout << "--Error: No player record" << endl;
   else {
     for (int i = 0; i < users.size(); i++) {
       cout << i+1 << ". ";
       users[i].print_info();
     }
+    cout << ">> ";
     int u;
     cin >> u;
     selectMode(users[u-1]);
@@ -60,7 +60,7 @@ void selectUser() {
 
 void printLeaderboard() {
   if (users.size() == 0)
-    cout << "No player record." << endl;
+    cout << "--Error: No player record" << endl;
   else {
     vector<User> ranking = users;
     sort(ranking.begin(), ranking.end());
@@ -78,14 +78,14 @@ void loadGame() {
   ifstream fin(load_file.c_str());
 
   if (fin.fail())
-    cout << "File access error" << endl;
+    cout << "--File access error" << endl;
   else {
     users.clear();
     string name;
     while (fin >> name) {
-      int money, score, level;
-      fin >> money >> score >> level;
-      User u(name, money, score, level);
+      int score, level, money;
+      fin >> score >> level >> money;
+      User u(name, score, level, money);
       users.push_back(u);
     }
     fin.close();
@@ -100,10 +100,10 @@ void saveGame() {
   ofstream fout(save_file.c_str());
 
   if (fout.fail())
-    cout << "File access error" << endl;
+    cout << "--File access error" << endl;
   else {
     for (int i = 0; i < users.size(); i++)
-      fout << users[i].name << ' ' << users[i].money << ' ' << users[i].score << ' ' << users[i].level << endl;
+      fout << users[i].name << ' ' << users[i].score << ' ' << users[i].level << ' ' << users[i].money << endl;
     fout.close();
   }
 }
