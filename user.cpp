@@ -1,8 +1,6 @@
 #include <iostream>
 #include "user.h"
 
-using namespace std;
-
 User::User(string name, int score, int level, int money) {
   this->name = name;
   this->score = score;
