@@ -1,73 +1,193 @@
 #include <iostream>
 #include <cmath>
 #include "mechanics.h"
-#include "user.h"
 
-using namespace std;
+bool levelUp(User &usr, int *p_inv) {
+  cout << "You Win!" << endl;
+  int inc_money = pow(2, usr.level);
+  int inc_score = usr.level * 100;
 
-void levelUp(User usr) {
-  usr.money += pow(2, usr.level);
-  usr.score += usr.level*100;
+  cout << "Level--> " << usr.level << " + 1" << endl;
+  if (p_inv[0]) {
+    cout << "Money--> " << usr.money << " + " << inc_money << " x 2" << endl;
+    inc_money *= 2;
+  }
+  if (!p_inv[0])
+    cout << "Money--> " << usr.money << " + " << inc_money << endl;
+
+  if (p_inv[1]) {
+    cout << "Score--> " << usr.score << " + " << inc_score << " x 2" << endl;
+    inc_score *= 2;
+  }
+  if (!p_inv[1])
+    cout << "Score--> " << usr.score << " + " << inc_score << endl;
+
+  usr.money += inc_money;
   usr.level++;
+  usr.score += inc_score;
+
+  usr.print_info();
+
+  char choice;
+  cout << "Continue to play? [y/n]" << endl;
+  cout << ">> ";
+  cin >> choice;
+  bool play;
+  while (1) {
+    if (choice == 'y') {
+      play = true;
+      break;
+    }
+    else if (choice == 'n')
+      play = false;
+      break;
+  }
+  return play;
 }
 
-bool gameOver(User usr) { //if not enough money -> directly skip 
-  int option;
-  int amount = pow(usr.level, 2)*100;
+bool gameOver(User &usr, int result) {
+  int amount = pow(usr.level, 2) * 100 * result;
+  bool resurrect;
+
   cout << "GAME OVER." << endl;
-  if (usr.money<amount)
-  return 0;
-  cout << "1. Pay $" << amount << " to resurrect." << endl;
-  cout << "2. Start over." << endl;
-  cin >> option;
+  usr.print_info();
+  while (1) {
+    char option;
+    cout << "Pay $ " << amount << " to resurrect? [y/n]" << endl;
+    cout << ">> ";
+    cin >> option;
 
-  bool cont;
-  if (option == 1) {
-    usr.money -= amount;
-    cont = true;
+    if (option == 'y')
+      if (usr.money < amount)
+        cout << "--Error: You don't have enough money." << endl;
+      else {
+        usr.money -= amount;
+        cout << "-$ " << amount << endl;
+        usr.print_info();
+        resurrect = true;
+        break;
+      }
+    else if (option == 'n') {
+      usr.reset();
+      resurrect = false;
+      break;
+    }
   }
-  else if (option == 2) {
-    usr.reset();
-    cont = false;
-  }
-  return cont;
+
+  return resurrect;
 }
 
-void printInventory(int * p_inv) {
-  string items[] = {"x2 money", "x2 score", "card revealer"};
-  cout << "Inventory: " << endl;
-  for (int i = 0; i < sizeof(items)/sizeof(items[0]); i++)
-    cout << items[i] << " - "<< p_inv[i] << ", ";
-  cout << endl;
+int GuessSize(Card currentcard, Card nextcard) {
+  char choice;
+  cout << "Press 'L' if you think the next card will be larger" << endl;
+  cout << "Press 'S' if you think the next card will be smaller" << endl;
+  cout << ">> ";
+  cin >> choice;
+
+  int result = 1;
+  if (nextcard.rank_idx == currentcard.rank_idx)
+      result = 2;
+  else if (choice == 'S' && (nextcard.rank_idx < currentcard.rank_idx))
+      result = 0;
+  else if (choice == 'L' && (nextcard.rank_idx > currentcard.rank_idx))
+      result = 0;
+  else if (choice != 'S' && choice != 'L')
+      result = -1;
+
+  return result;
 }
 
-int * store(User usr) { //if not enough money -> cant buy
-  int prices[] = {usr.level*100, usr.level*200, usr.level*300};
+int GuessColour(Card nextcard) {
+  char choice;
+  cout << "Press 'R' if you think the next card will be red" << endl;
+  cout << "Press 'B' if you think the next card will be black" << endl;
+  cout << ">> ";
+  cin >> choice;
+
+  int result = 1;
+  if (choice == 'R' && (nextcard.suit == HEART || nextcard.suit == DIAMOND))
+      result = 0;
+  else if (choice == 'B' && (nextcard.suit == SPADE || nextcard.suit == CLUB))
+      result = 0;
+  else if (choice != 'R' && choice != 'B')
+      result = -1;
+
+	return result;
+}
+
+void printStore(string items[], int prices[], int inv[]) {
+  for (int i = 0; i < 3; i++)
+    if (i == 0 || i == 1)
+      if (inv[i] != 1)
+        cout << i+1 << ". " << items[i] << " $ " << prices[i] << endl;
+      else
+        cout << i+1 << ". " << items[i] << " is sold out." << endl;
+    else
+      cout << i+1 << ". " << items[i] << " $ " << prices[i] << endl;
+}
+
+int * store(User &usr) {
   string items[] = {"x2 money", "x2 score", "card revealer"};
-  int usr_inventory[] = {0, 0, 0};
-  int *p_inv = usr_inventory;
+  int prices[] = {usr.level*100, usr.level*100, usr.level*200};
+  int *inventory = new int[3];
+
+  for (int i = 0; i < 3; i++)
+    inventory[i] = 0;
+
   cout << "Welcome to the store!" << endl;
   cout << "You may choose to purchase items for the next level: " << endl;
 
-  for (int i = 0; i < sizeof(items)/sizeof(items[0]); i++)
-    cout << i+1 << ". " << items[i] << " $" << prices[i] << endl;
+  while (1) {
+    printStore(items, prices, inventory);
+    cout << "Input item no. or input '0' to leave the store: " << endl;
+    cout << ">> ";
 
-  int item;
-  cout << "Input item no. or input any key to leave the store: " << endl;
-  cin >> item;
-  while (item == 1 || item == 2 || item == 3){
-    int quantity;
-    cout << "How many " << items[item-1] << " do you want? ";
-    cin >> quantity;
-	if (user.money < price[item-1]*quantity){
-		cout << "Sorry, you do not have enough money." << endl;
-	}
-	else{
-    usr.money -= prices[item-1]*quantity;
-    usr_inventory[item-1] += quantity;
-    cout << "You bought " << quantity << " " << items[item-1] << "(s) for $" << prices[item-1]*quantity << endl;
-	}
-    cout << "Input item no. or input any key to leave the store: " << endl;
-    cin >> item;
+    int option;
+    cin >> option;
+
+    if (option == 1 || option == 2)
+      if (inventory[option-1] == 1)
+        cout << "--Error: Item is sold" << endl;
+      else {
+        if (usr.money < prices[option-1])
+          cout << "--Error: You don't have enough money." << endl;
+        else {
+          usr.money -= prices[option-1];
+          inventory[option-1] = 1;
+          cout << "You bought a " << items[option-1] << " for $ " << prices[option-1] << endl;
+        }
+      }
+    else if (option == 3) {
+      if (usr.money < prices[option-1])
+        cout << "--Error: You don't have enough money." << endl;
+      else {
+        usr.money -= prices[option-1];
+        inventory[option-1]++;
+        cout << "You bought a " << items[option-1] << " for $ " << prices[option-1] << endl;
+      }
+    }
+    else if (option == 0)
+      break;
   }
-  return p_inv;
+
+  return inventory;
+}
+
+bool cardRevealer(int *p_inv) {
+  if (p_inv[2] > 0) {
+    while (1) {
+      cout << "You have " << p_inv[2] << " Card Revealer(s)" << endl;
+      cout << "Use Card Revealer? [y/n]" << endl;
+      cout << ">> ";
+      char choice;
+      cin >> choice;
+      if (choice == 'y') {
+        p_inv[2]--;
+        return true;
+      }
+      else if (choice == 'n')
+        return false;
+    }
+  }
+  return false;
+}
