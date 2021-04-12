@@ -1,11 +1,9 @@
 #include <iostream>
-#include <fstream>
-#include <vector>
-#include <algorithm>
-#include "user.h"
 #include "menu.h"
-
-using namespace std;
+#include "user.h"
+#include "card.h"
+#include "mechanics.h"
+#include "game.h"
 
 int main() {
   while (1) {
@@ -18,7 +16,7 @@ int main() {
     cout << "5 - Save Game" << endl;
     cout << "6 - Quit" << endl;
     cout << "-----------------" << endl;
-
+    cout << ">> ";
     int option;
     cin >> option;
 
