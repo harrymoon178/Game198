@@ -1,14 +1,23 @@
-#ifdef MECHANICS_H
+#ifndef MECHANICS_H
 #define MECHANICS_H
 
 #include "user.h"
+#include "card.h"
 
-void levelUp(User usr);
+using namespace std;
 
-bool gameOver(User usr);
+bool levelUp(User &usr, int *p_inv);
 
-void printInventory(int * p_inv);
+bool gameOver(User &usr, int result);
 
-int * store(User usr);
+int GuessSize(Card currentcard, Card nextcard);
+
+int GuessColour(Card nextcard);
+
+void printStore(string items[], int prices[], int inv[]);
+
+int * store(User &usr);
+
+bool cardRevealer(int *p_inv);
 
 #endif
