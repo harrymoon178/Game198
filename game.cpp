@@ -34,7 +34,7 @@ void single(User &usr) {
         bool reveal = cardRevealer(p_inv);
 
         if (reveal) {
-          cout << "You used the Card revealer." << endl;
+          cout << "    cout <<"\033[0;36m You used the Card Revealer. \033[0m "<< endl;" << endl;
           count++;
         }
         else {
