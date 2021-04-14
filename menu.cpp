@@ -28,7 +28,7 @@ void newUser() {
   User u(name);
   users.push_back(u);
 
-  selectMode(u);
+  //selectMode(u);
 }
 
 void selectUser() {
