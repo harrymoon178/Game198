@@ -8,18 +8,6 @@
 
 vector<User> users;
 
-void selectMode(User &usr) {
-  cout << "Choose a game mode: " << endl;
-  cout << "1 - Single Player" << endl;
-  cout << "2 - vsComputer" << endl;
-  cout << ">> ";
-  int mode;
-  cin >> mode;
-  if (mode == 1)
-    single(usr);
-  //else if (mode == 2)
-  //  vsComputer(usr);
-}
 
 bool sameName(string name) {
   for (int i = 0; i < users.size(); i++)
