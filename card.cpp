@@ -14,5 +14,23 @@ Card::Card(int card_idx) {
 }
 
 void Card::print_card() {
-  cout << rank << suit << " ";
+for (int i = 1; i <= 6; i++)
+  {
+      for (int j = 1; j <= 10; j++)
+      {
+          if (j==10)
+              cout << "* ";
+          else if (i == 1 || i == 6 ||
+              j == 1)        
+              cout << "*";            
+          else if((i==2&&j==2)||(i==5&&j==9))
+              cout << rank;
+          else if ((i==2&&j==3)||(i==5&&j==8))
+              cout << suit;
+          else
+              cout << " ";
+      }
+      cout << endl;
+  }
+ 
 }
