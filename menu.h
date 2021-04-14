@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void selectMode(User &usr);
+//void selectMode(User &usr);
 
 bool sameName(string name);
 
