@@ -22,14 +22,6 @@ Text-based game for engg1340/comp2113 project
    - Gameover (reset score) OR pay money to resurrect
   2. If the player guessed correct for 7 consecutive times:
    - Proceed to next level AND ++money
-
-2. 'vs Computer' mode
-- if guessed right, AI's turn
-- until the player or the AI guessed wrong 
-  1. If the player guessed wrong:
-   - Gameover (reset score) OR pay money to resurrect
-  2. If the AI guessed wrong:
-   - ++moeny 
                                                                                                                                                                         
 ## List of features: (with code requirements 1-5)
 
@@ -44,7 +36,7 @@ Text-based game for engg1340/comp2113 project
   - unique id name
   - supports multiple single players
   - leaderboard system
-    - only suitable in 'single player' mode
+
 - money system: **(2,3,4)**
   - before each level, the player can buy items in the store
     - card revealer
