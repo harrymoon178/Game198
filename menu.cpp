@@ -22,7 +22,7 @@ void newUser() {
   cin >> name;
 
   while (sameName(name)) {
-    cout << "Name taken, try another: ";
+    cout <<"\033[1;31mName taken, try another: \033[0m "<< endl;
     cin >> name;
   }
   User u(name);
@@ -33,7 +33,7 @@ void newUser() {
 
 void selectUser() {
   if (users.size() == 0)
-    cout << "--Error: No player record" << endl;
+    cout <<"\033[1;31m--Error: No player record \033[0m "<< endl;
   else {
     for (int i = 0; i < users.size(); i++) {
       cout << i+1 << ". ";
@@ -48,7 +48,7 @@ void selectUser() {
 
 void printLeaderboard() {
   if (users.size() == 0)
-    cout << "--Error: No player record" << endl;
+    cout <<"\033[1;31m--Error: No player record \033[0m "<< endl;
   else {
     vector<User> ranking = users;
     sort(ranking.begin(), ranking.end());
@@ -60,13 +60,13 @@ void printLeaderboard() {
 
 void loadGame() {
   string load_file;
-  cout << "Load from (file name): ";
+  cout <<"\033[1;32mLoad from (file name): \033[0m "<< endl;
   cin >> load_file;
 
   ifstream fin(load_file.c_str());
 
   if (fin.fail())
-    cout << "--File access error" << endl;
+    cout <<"\033[1;31m--File access error \033[0m "<< endl;
   else {
     users.clear();
     string name;
@@ -82,13 +82,13 @@ void loadGame() {
 
 void saveGame() {
   string save_file;
-  cout << "Save as (file name): ";
+  cout <<"\033[1;32mSave as (file name): \033[0m "<< endl;
   cin >> save_file;
 
   ofstream fout(save_file.c_str());
 
   if (fout.fail())
-    cout << "--File access error" << endl;
+    cout <<"\033[1;31m--File access error \033[0m "<< endl;
   else {
     for (int i = 0; i < users.size(); i++)
       fout << users[i].name << ' ' << users[i].score << ' ' << users[i].level << ' ' << users[i].money << endl;
