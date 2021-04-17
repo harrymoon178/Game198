@@ -3,11 +3,11 @@
 #include "mechanics.h"
 
 bool levelUp(User &usr, int *p_inv) {
-  cout << "You Win!" << endl;
+  cout << "\033[0;33mYou Win!\033[0m" << endl;
   int inc_money = pow(2, usr.level);
   int inc_score = usr.level * 100;
 
-  cout << "Level--> " << usr.level << " + 1" << endl;
+  cout << "Level--> " << usr.level << "\033[0;33m + 1\033[0m" << endl;
   if (p_inv[0]) {
     cout << "Money--> " << usr.money << " + " << inc_money << " x 2" << endl;
     inc_money *= 2;
@@ -49,7 +49,7 @@ bool gameOver(User &usr, int result) {
   int amount = pow(usr.level, 2) * 100 * result;
   bool resurrect;
 
-  cout << "GAME OVER." << endl;
+  cout << "\033[0;31mGAME OVER.\033[0m" << endl;
   usr.print_info();
   while (1) {
     char option;
@@ -59,7 +59,7 @@ bool gameOver(User &usr, int result) {
 
     if (option == 'y')
       if (usr.money < amount)
-        cout << "--Error: You don't have enough money." << endl;
+        cout << "\033[0;31m--Error: You don't have enough money.\033[0m" << endl;
       else {
         usr.money -= amount;
         cout << "-$ " << amount << endl;
@@ -134,7 +134,7 @@ int * store(User &usr) {
   for (int i = 0; i < 3; i++)
     inventory[i] = 0;
 
-  cout << "Welcome to the store!" << endl;
+  cout << "\033[0;35mWelcome to the store!\033[0m" << endl;
   cout << "You may choose to purchase items for the next level: " << endl;
 
   while (1) {
@@ -147,10 +147,10 @@ int * store(User &usr) {
 
     if (option == 1 || option == 2)
       if (inventory[option-1] == 1)
-        cout << "--Error: Item is sold" << endl;
+        cout << "\033[0;31m--Error: Item is sold\033[0m" << endl;
       else {
         if (usr.money < prices[option-1])
-          cout << "--Error: You don't have enough money." << endl;
+          cout << "\033[0;31m--Error: You don't have enough money.\033[0m" << endl;
         else {
           usr.money -= prices[option-1];
           inventory[option-1] = 1;
