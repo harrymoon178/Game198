@@ -17,7 +17,7 @@ void single(User &usr) {
 
       randomCard();   // initial card
       count = 0;
-      while (count < 7) {
+      while (count < 7) { 
         printCards();
 
         if (cards.size() == 52) {   // player wins if all cards are drawn
@@ -70,16 +70,16 @@ void single(User &usr) {
         cout << "Streak: " << count << endl;
       }
 
-    if (count == 7) {
+    if (count == 7) { // level up when guessed correctly for 7 consecutive times
       printCards();
-      play = levelUp(usr, p_inv);
+      play = levelUp(usr, p_inv); 
       delete p_inv;
     }
 
   }
 }
 
-bool sameCard(int card_idx) {
+bool sameCard(int card_idx) { //if the card size of the current card and the next card is the same, the player loses
   for (int i = 0; i < cards.size(); i++)
     if (cards[i].idx == card_idx)
       return 1;
