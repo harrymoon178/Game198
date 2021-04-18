@@ -36,6 +36,8 @@ void single(User &usr) {
         if (reveal) {
           cout << "    cout <<"\033[0;36m You used the Card Revealer. \033[0m "<< endl;" << endl;
           count++; // money and score can be added after using card revealer
+          score+=inc_score;
+          money+=inc_money;
         }
         else {
           int result;
@@ -65,6 +67,8 @@ void single(User &usr) {
           }
           else
             count++;
+            score+=inc_score;
+            money+=inc_money;
         }
 
         cout << "Streak: " << count << endl;
