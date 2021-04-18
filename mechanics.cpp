@@ -159,7 +159,7 @@ int * store(User &usr) {
       }
     else if (option == 3) {
       if (usr.money < prices[option-1])
-        cout << "--Error: You don't have enough money." << endl;
+        cout << "\033[0;31m--Error: You don't have enough money.\033[0m" << endl;
       else {
         usr.money -= prices[option-1];
         inventory[option-1]++;
@@ -176,7 +176,7 @@ int * store(User &usr) {
 bool cardRevealer(int *p_inv) {
   if (p_inv[2] > 0) {
     while (1) {
-      cout << "You have " << p_inv[2] << " Card Revealer(s)" << endl;
+      cout << "You have " << p_inv[2] << "\033[0;35m Card Revealer(s)\033[0m" << endl;
       cout << "Use Card Revealer? [y/n]" << endl;
       cout << ">> ";
       char choice;
