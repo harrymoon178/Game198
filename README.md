@@ -12,7 +12,7 @@ Text-based game for engg1340/comp2113 project
 - 52 poker cards
 - the player guesses the card's:
   - for card 3 - K, the player has to guess whether the next card is larger or smaller than the previous one
-  - for card A and 2, the player has to guess whether the next card is red or black
+  - for card A and 2, the player has to guess whether the next card is red or black 
   - if guessed right:
     - proceed to the next card
     - ++money and ++score 
@@ -21,7 +21,7 @@ Text-based game for engg1340/comp2113 project
    - Gameover (reset score) OR pay money to resurrect
   2. If the player guessed correct for 7 consecutive times:
    - Proceed to next level AND ++money
-
+- if the size of the current card and the next card is the same, the player loses
 - the player can earn money to purchase items/resurrect 
                                                                                                                                                  
 ## List of features: (with code requirements 1-5)
