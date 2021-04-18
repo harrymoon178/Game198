@@ -9,10 +9,10 @@
 vector<User> users;
 
 
-bool sameName(string name) {
+bool sameName(string name) { //same account name is not allowed
   for (int i = 0; i < users.size(); i++)
     if (name == users[i].name)
-      return 1;
+      return 1; 
   return 0;
 }
 
@@ -31,7 +31,7 @@ void newUser() {
   //selectMode(u);
 }
 
-void selectUser() {
+void selectUser() { //to continue the past record
   if (users.size() == 0)
     cout <<"\033[1;31m--Error: No player record \033[0m "<< endl;
   else {
@@ -54,11 +54,11 @@ void printLeaderboard() {
     sort(ranking.begin(), ranking.end());
 
     for (int i = 0; i < users.size(); i++)
-      cout << "No." << i+1 << " " << ranking[i].name << " " << ranking[i].score << endl;
+      cout << "No." << i+1 << " " << ranking[i].name << " " << ranking[i].score << endl; 
   }
 }
 
-void loadGame() {
+void loadGame() { //continue the game 
   string load_file;
   cout <<"\033[1;32mLoad from (file name): \033[0m "<< endl;
   cin >> load_file;
