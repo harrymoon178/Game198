@@ -13,7 +13,7 @@ Card::Card(int card_idx) {
   suit = suits[suit_idx];
 }
 
-void Card::print_card() {
+void Card::print_card() { //print the outline of a card
 for (int i = 1; i <= 6; i++)
   {
       for (int j = 1; j <= 10; j++)
