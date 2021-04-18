@@ -2,7 +2,7 @@
 #include <cmath>
 #include "mechanics.h"
 
-bool levelUp(User &usr, int *p_inv) {
+bool levelUp(User &usr, int *p_inv) { 
   cout << "\033[0;33mYou Win!\033[0m" << endl;
   int inc_money = pow(2, usr.level);
   int inc_score = usr.level * 100;
@@ -53,13 +53,13 @@ bool gameOver(User &usr, int result) {
   usr.print_info();
   while (1) {
     char option;
-    cout << "Pay $ " << amount << " to resurrect? [y/n]" << endl;
+    cout << "Pay $ " << amount << " to resurrect? [y/n]" << endl; //player has to pay to resurrect
     cout << ">> ";
     cin >> option;
 
     if (option == 'y')
       if (usr.money < amount)
-        cout << "\033[0;31m--Error: You don't have enough money.\033[0m" << endl;
+        cout << "\033[0;31m--Error: You don't have enough money.\033[0m" << endl; //player can't resurrect if he/she does not have enough money
       else {
         usr.money -= amount;
         cout << "-$ " << amount << endl;
@@ -77,7 +77,7 @@ bool gameOver(User &usr, int result) {
   return resurrect;
 }
 
-int GuessSize(Card currentcard, Card nextcard) {
+int GuessSize(Card currentcard, Card nextcard) { // guess the size of the next card
   char choice;
   cout << "Press 'L' if you think the next card will be larger" << endl;
   cout << "Press 'S' if you think the next card will be smaller" << endl;
@@ -97,7 +97,7 @@ int GuessSize(Card currentcard, Card nextcard) {
   return result;
 }
 
-int GuessColour(Card nextcard) {
+int GuessColour(Card nextcard) { // guess the colour of the card
   char choice;
   cout << "Press 'R' if you think the next card will be red" << endl;
   cout << "Press 'B' if you think the next card will be black" << endl;
@@ -115,7 +115,7 @@ int GuessColour(Card nextcard) {
 	return result;
 }
 
-void printStore(string items[], int prices[], int inv[]) {
+void printStore(string items[], int prices[], int inv[]) { // player can buy items in the store
   for (int i = 0; i < 3; i++)
     if (i == 0 || i == 1)
       if (inv[i] != 1)
