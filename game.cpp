@@ -35,21 +35,21 @@ void single(User &usr) {
 
         if (reveal) {
           cout << "    cout <<"\033[0;36m You used the Card Revealer. \033[0m "<< endl;" << endl;
-          count++;
+          count++; // money and score can be added after using card revealer
         }
         else {
           int result;
       		if (currentcard.rank_idx > 1) {
             while (1) {
             result = GuessSize(currentcard, nextcard);
-            if (result != -1)
+            if (result != -1) // if guessed wrong then end
               break;
             }
           }
       		else {
             while (1) {
             result = GuessColour(nextcard);
-            if (result != -1)
+            if (result != -1) // if guessed wrong then end
               break;
             }
           }
@@ -57,10 +57,10 @@ void single(User &usr) {
           bool gameover = result != 0;
       		if (gameover) {
             printCards();
-            bool resurrect = gameOver(usr, result);
-            if (!resurrect) {
+            bool resurrect = gameOver(usr, result); // resurrect?
+            if (!resurrect) { 
               play = false;
-              break;
+              break; // if do not resurrect, game end
             }
           }
           else
