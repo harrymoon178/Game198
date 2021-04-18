@@ -42,7 +42,7 @@ void selectUser() {
     cout << ">> ";
     int u;
     cin >> u;
-    selectMode(users[u-1]);
+  //  selectMode(users[u-1]);
   }
 }
 
