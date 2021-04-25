@@ -16,7 +16,7 @@ int main() { //home page of the game
     cout << "   [5 - Save Game]" << endl;
     cout << "   [6 - Quit]" << endl;
     cout << "   \033[0;33m-------------------------------------\033[0m" << endl;
-    cout << "   》》";
+    cout << ">> ";
 
     int option;
     cin >> option;
