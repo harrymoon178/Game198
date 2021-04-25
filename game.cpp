@@ -17,8 +17,10 @@ void single(User &usr) {
 
       randomCard();   // initial card
       count = 0;
-      while (count < 7) { 
-        printCards();
+      while (count < 7) {
+        cout << "Streak: " << count << endl;
+          
+        printCard();
 
         if (cards.size() == 52) {   // player wins if all cards are drawn
           play = levelUp(usr, p_inv);
@@ -34,10 +36,9 @@ void single(User &usr) {
         bool reveal = cardRevealer(p_inv);
 
         if (reveal) {
-          cout << "    cout <<"\033[0;36m You used the Card Revealer. \033[0m "<< endl;" << endl;
-          count++; // money and score can be added after using card revealer
-          score+=inc_score;
-          money+=inc_money;
+          cout << "\033[0;36m You used a Card Revealer. \033[0m" << endl;
+          count++;
+          correct(usr, p_inv); // money and score can be added after using card revealer
         }
         else {
           int result;
@@ -58,28 +59,27 @@ void single(User &usr) {
 
           bool gameover = result != 0;
       		if (gameover) {
-            printCards();
+            printCard();
             bool resurrect = gameOver(usr, result); // resurrect?
             if (!resurrect) { 
               play = false;
               break; // if do not resurrect, game end
             }
           }
-          else
+          else {
             count++;
-            score+=inc_score;
-            money+=inc_money;
+            correct(usr, p_inv);
+          }
         }
 
-        cout << "Streak: " << count << endl;
       }
 
     if (count == 7) { // level up when guessed correctly for 7 consecutive times
-      printCards();
+      cout << "Streak: " << count << endl;
+      printCard();
       play = levelUp(usr, p_inv); 
-      delete p_inv;
     }
-
+    delete p_inv;
   }
 }
 
@@ -101,10 +101,6 @@ void randomCard() {
   cards.push_back(c);   // add card to cards
 }
 
-void printCards() {
-  for (int i = 0; i < cards.size(); i++) {
-    cards[i].print_card();
-    cout << " ";
-  }
-  cout << endl;
+void printCard() {
+  cards[cards.size()-1].print_card();
 }
