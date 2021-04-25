@@ -5,8 +5,6 @@
 
 using namespace std;
 
-//void selectMode(User &usr);
-
 bool sameName(string name);
 
 void newUser();
