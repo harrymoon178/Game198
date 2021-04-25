@@ -6,6 +6,8 @@
 
 using namespace std;
 
+void correct(User &usr, int *p_inv);
+
 bool levelUp(User &usr, int *p_inv);
 
 bool gameOver(User &usr, int result);
