@@ -56,12 +56,13 @@ void printLeaderboard() { // print the Leaderboard
   if (users.size() == 0)
     cout << "\033[1;31m--Error: No player record \033[0m " << endl;
   else {
-    cout << "Leaderboard: " << endl;
+    cout << "\033[1;36m === Leaderboard: === \033[0m" << endl;
     vector<User> ranking = users;
     sort(ranking.begin(), ranking.end());
 
     for (int i = 0; i < users.size(); i++)
-      cout << "   " << "No." << i+1 << " " << ranking[i].name << " " << ranking[i].score << endl;
+      cout << "     " << "No." << i+1 << " " << ranking[i].name << " " << ranking[i].score << endl;
+    cout << "\033[1;36m =====================\033[0m" << endl;
   }
 }
 
