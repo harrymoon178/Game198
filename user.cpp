@@ -1,14 +1,14 @@
 #include <iostream>
 #include "user.h"
 
-User::User(string name, int score, int level, int money) { //account information
+User::User(string name, int score, int level, int money) { // account constructor
   this->name = name;
   this->score = score;
   this->level = level;
   this->money = money;
 }
 
-void User::reset() { //default account
+void User::reset() { // reset user score and level
   score = 0;
   level = 1;
 }
