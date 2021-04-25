@@ -11,6 +11,6 @@ bool sameCard(int card_idx);
 
 void randomCard();
 
-void printCards();
+void printCard();
 
 #endif
