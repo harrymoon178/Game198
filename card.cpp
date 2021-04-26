@@ -14,7 +14,18 @@ Card::Card(int card_idx) {
   suit = suits[suit_idx];
 }
 
-void Card::print_card() { // print the outline of a card
+// Function: to print the outline of a card
+// Input: No input
+// Output: 
+// ************
+// * J()      *
+// *          *
+// *          *
+// *          *
+// *          *
+// *      ()J *
+// ************
+void Card::print_card() {
   for (int i = 0; i < 12; i++)
     cout << '*';
   cout << endl;
