@@ -1,6 +1,4 @@
 #include <iostream>
-#include <cstdlib>      // for calling srand(), rand()
-#include <ctime>        // for calling time()
 #include <iomanip>      // for setw()
 #include "card.h"
 
