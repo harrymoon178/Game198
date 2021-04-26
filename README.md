@@ -64,9 +64,9 @@ Text-based game for engg1340/comp2113 project
 
 ## Compilation and execution instructions:
 - Steps:
-  2. move the current directory to where the program files are located
-  3. make
-  4. ./beat_the_dealer
+  1. move the current directory to where the program files are located
+  2. make
+  3. ./beat_the_dealer
 - After entering the main menu, type 1 to create new player
 - type 2 to select a player to start the game
 - type 3 to show the leaderboard
