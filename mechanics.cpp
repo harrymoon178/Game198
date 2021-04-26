@@ -1,6 +1,9 @@
 #include <iostream>
 #include "mechanics.h"
 
+// Function: add scores and money to the user if he/she guesses correctly
+// Input: the address of the user and a pointer to inventory 
+// Output: scores and money added if the user guesses correctly
 void correct(User &usr, int *p_inv) {
   int inc_money = usr.level * 50;
   int inc_score = usr.level * 100;
@@ -23,7 +26,14 @@ void correct(User &usr, int *p_inv) {
   usr.score += inc_score;
   usr.print_info();
 }
-
+// Function: 
+// - the user will level up if he/she passes seven times consecutively 
+// - the user can choose to continue or not
+// Input: the address of the user and a pointer to inventory 
+// Output: 
+// - level up if the user passes seven times consecutively 
+// - if the user chooses to continue: play is true and the game continues
+// - if the user does not choose to continue: play is false and the game ends
 bool levelUp(User &usr, int *p_inv) {
   cout << "\033[0;33mYou Win!\033[0m" << endl;
 
@@ -47,7 +57,11 @@ bool levelUp(User &usr, int *p_inv) {
   }
   return play;
 }
-
+// Function: the game ends when the user guesses wrong unless he/she chooses to resurrect
+// Input: the address of the user and result
+// Output: 
+// - if the user guesses wrong and choose to ressurect: resurrect is true and the game continues
+// - if the user guesses wrong and do not choose to ressurect: resurrect is false and the game ends	
 bool gameOver(User &usr, int result) {
   int amount = usr.level * 100 * result;
   bool resurrect;
@@ -83,7 +97,14 @@ bool gameOver(User &usr, int result) {
   return resurrect;
 }
 
-int GuessSize(Card currentcard, Card nextcard) { // guess the size of the next card
+// Function: to guess the size of the next card
+// Input: the size of the next card
+// Output: 
+// - if the size of the next card is same as the current card: result = 2 and the user has to pay double to resurrect 
+// - if the size of the next card is guessed correctly: result is true and the game continues
+// - if the size of the next card is not guessed correctly: result is false and the game ends
+// - if the input is not correct: result = -1 and the user has to type again
+int GuessSize(Card currentcard, Card nextcard) { 
   char choice;
   cout << "Press 'L' if you think the next card will be larger" << endl;
   cout << "Press 'S' if you think the next card will be smaller" << endl;
@@ -103,6 +124,12 @@ int GuessSize(Card currentcard, Card nextcard) { // guess the size of the next c
   return result;
 }
 
+// Function: to guess the colour of the next card
+// Input: the colour of the next card
+// Output: 
+// - if the colour of the next card is guessed correctly: result is true and the game continues
+// - if the colour of the next card is not guessed correctly: result is false and the game ends
+// - if the input is not correct: result = -1 and the user has to type again
 int GuessColour(Card nextcard) { // guess the colour of the card
   char choice;
   cout << "Press 'R' if you think the next card will be red" << endl;
@@ -121,7 +148,10 @@ int GuessColour(Card nextcard) { // guess the colour of the card
 	return result;
 }
 
-void printStore(string items[], int prices[], int inv[]) { // player can buy items in the store
+// Function: to show the users what can buy items in store 
+// Input: No input
+// Output: the type, price and quantity of the items
+void printStore(string items[], int prices[], int inv[]) { 
   for (int i = 0; i < 3; i++)
     if (i == 0 || i == 1)
       if (inv[i] != 1)
@@ -132,6 +162,9 @@ void printStore(string items[], int prices[], int inv[]) { // player can buy ite
       cout << "   " << i+1 << ". " << items[i] << " $ " << prices[i] << endl;
 }
 
+// Function: to allow users to buy items in store 
+// Input: what to buy
+// Output: what has the user bought / the item has been sold out / the user does not have enough money
 int * store(User &usr) {
   string items[] = {"\033[0;36mx2 money\033[0m", "\033[0;36mx2 score\033[0m", "\033[0;36mcard revealer\033[0m"};
   int prices[] = {usr.level*100, usr.level*100, usr.level*100};
@@ -182,6 +215,11 @@ int * store(User &usr) {
   return inventory;
 }
 
+// Function: item to facilitate the user - to reveal the next card
+// Input: use the card revealer or not
+// Output: 
+// - if used: return is true
+// - if not used: return is false
 bool cardRevealer(int *p_inv) {
   if (p_inv[2] > 0) {
     while (1) {
