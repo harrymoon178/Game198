@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 #include "mechanics.h"
 
 void correct(User &usr, int *p_inv) {
@@ -22,6 +21,7 @@ void correct(User &usr, int *p_inv) {
 
   usr.money += inc_money;
   usr.score += inc_score;
+  usr.print_info();
 }
 
 bool levelUp(User &usr, int *p_inv) {
@@ -29,6 +29,7 @@ bool levelUp(User &usr, int *p_inv) {
 
   cout << "Level--> " << usr.level << " + 1" << endl;
   usr.level++;
+  usr.print_info();
 
   char choice;
   bool play;
@@ -48,7 +49,7 @@ bool levelUp(User &usr, int *p_inv) {
 }
 
 bool gameOver(User &usr, int result) {
-  int amount = pow(usr.level, 2) * 100 * result;
+  int amount = usr.level * 100 * result;
   bool resurrect;
 
   cout << "\033[0;31mGAME OVER.\033[0m" << endl;
@@ -66,6 +67,7 @@ bool gameOver(User &usr, int result) {
         cout << "Money--> " << usr.money << " - " << amount << endl;
         usr.money -= amount;
         resurrect = true;
+	usr.print_info();
         break;
       }
     else if (option == 'n') {
@@ -73,6 +75,7 @@ bool gameOver(User &usr, int result) {
       cout << "Level--> 1" << endl;
       cout << "Score--> 0" << endl;
       resurrect = false;
+      usr.print_info();
       break;
     }
   }
@@ -131,7 +134,7 @@ void printStore(string items[], int prices[], int inv[]) { // player can buy ite
 
 int * store(User &usr) {
   string items[] = {"\033[0;36mx2 money\033[0m", "\033[0;36mx2 score\033[0m", "\033[0;36mcard revealer\033[0m"};
-  int prices[] = {usr.level*100, usr.level*100, usr.level*200};
+  int prices[] = {usr.level*100, usr.level*100, usr.level*100};
   int *inventory = new int[3];
 
   for (int i = 0; i < 3; i++)
@@ -141,6 +144,7 @@ int * store(User &usr) {
   cout << "You may choose to purchase items for the next level: " << endl;
 
   while (1) {
+    usr.print_info();
     printStore(items, prices, inventory);
     cout << "Input item no. or input '0' to leave the store: " << endl;
     cout << ">> ";
