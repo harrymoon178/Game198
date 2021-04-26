@@ -11,7 +11,6 @@ void single(User &usr) {
 
     while (play) {
       cards.clear();
-      usr.print_info();
 
       int *p_inv = store(usr);
 
@@ -19,7 +18,7 @@ void single(User &usr) {
       count = 0;
       while (count < 7) {
         cout << "Streak: " << count << endl;
-          
+
         printCard();
 
         if (cards.size() == 52) {   // player wins if all cards are drawn
@@ -61,7 +60,7 @@ void single(User &usr) {
       		if (gameover) {
             printCard();
             bool resurrect = gameOver(usr, result); // resurrect?
-            if (!resurrect) { 
+            if (!resurrect) {
               play = false;
               break; // if do not resurrect, game end
             }
@@ -77,7 +76,7 @@ void single(User &usr) {
     if (count == 7) { // level up when guessed correctly for 7 consecutive times
       cout << "Streak: " << count << endl;
       printCard();
-      play = levelUp(usr, p_inv); 
+      play = levelUp(usr, p_inv);
     }
     delete p_inv;
   }
