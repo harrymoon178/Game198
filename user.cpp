@@ -1,7 +1,10 @@
 #include <iostream>
 #include "user.h"
 
-User::User(string name, int score, int level, int money) { // account constructor
+// Function: to construct an account
+// Input: name, score, level and money
+// Output: No output
+User::User(string name, int score, int level, int money) { 
   this->name = name;
   this->score = score;
   this->level = level;
@@ -23,6 +26,9 @@ void User::print_info() {
   cout << name << ": " << score << ", lv." << level << ", $" << money << endl;
 }
 
+// Function: to facilitate sorting
+// Input: 2 users
+// Output: the sequence of the users
 bool operator<(const User & a, const User & b) {
   if (a.score == b.score)
     return (a.name < b.name);
