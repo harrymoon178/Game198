@@ -19,15 +19,7 @@ Card::Card(int card_idx) {
 
 // Function: to print the outline of a card
 // Input: No input
-// Output: 
-// ************
-// * J()      *
-// *          *
-// *          *
-// *          *
-// *          *
-// *      ()J *
-// ************
+// Output: outline of a card
 void Card::print_card() {
   for (int i = 0; i < 12; i++)
     cout << '*';
