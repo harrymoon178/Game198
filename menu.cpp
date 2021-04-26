@@ -7,15 +7,20 @@
 #include "game.h"
 
 vector<User> users;
-
-bool sameName(string name) { // same account name is not allowed
+// Function: to check whether the name is used
+// Input: username
+// Output: if the name is used: return 1 
+bool sameName(string name) { 
   for (int i = 0; i < users.size(); i++)
     if (name == users[i].name)
       return 1;
   return 0;
 }
 
-void newUser() { // create new user
+// Function: to create a new user
+// Input: username
+// Output: No output
+void newUser() { 
   string name;
   cout << "New Player: ";
   cin >> name;
@@ -28,7 +33,13 @@ void newUser() { // create new user
   users.push_back(u);
 }
 
-void selectUser() { // select user to continue the past record
+// Function: to continue the last game
+// Input: choose a user
+// Output: 
+// - if no such user: 'no player record'
+// - if invalid input: 'error' 
+// - choose the user and start the game
+void selectUser() { 
   if (users.size() == 0)
     cout << "\033[1;31m--Error: No player record \033[0m" << endl;
   else {
@@ -50,7 +61,10 @@ void selectUser() { // select user to continue the past record
   }
 }
 
-void printLeaderboard() { // print the Leaderboard
+// Function: to print the outline of the leaderboard
+// Input: No input
+// Output: the outline of the leaderboard
+void printLeaderboard() {
   if (users.size() == 0)
     cout << "\033[1;31m--Error: No player record \033[0m" << endl;
   else {
@@ -64,7 +78,10 @@ void printLeaderboard() { // print the Leaderboard
   }
 }
 
-void loadGame() { // load game status from file
+// Function: to load the game from the file
+// Input: file name
+// Output: the file if the file exists
+void loadGame() { 
   string load_file;
   cout << "\033[1;32mLoad from (file name): \033[0m";
   cin >> load_file;
@@ -86,7 +103,10 @@ void loadGame() { // load game status from file
   }
 }
 
-void saveGame() { // save game status from file
+// Function: to save the game to the file
+// Input: file name
+// Output: No output
+void saveGame() { 
   string save_file;
   cout << "\033[1;32mSave as (file name): \033[0m";
   cin >> save_file;
