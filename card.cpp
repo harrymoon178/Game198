@@ -4,6 +4,9 @@
 #include <iomanip>      // for setw()
 #include "card.h"
 
+// Function: to declare the suits and ranks of the cards
+// Input: No input
+// Output: No output
 Card::Card(int card_idx) {
   idx = card_idx;
   rank_idx = card_idx % 13;  // "A","2","3","4","5","6","7","8","9","10","J","Q","K"
