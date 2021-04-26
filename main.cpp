@@ -4,8 +4,10 @@
 #include "card.h"
 #include "mechanics.h"
 #include "game.h"
-
-int main() { //home page of the game
+// Function: to print the home page of the game
+// Input: No input
+// Output: the outline of the home page
+int main() { 
   while (1) {
     cout << "   \033[0;33m-------------------------------------\033[0m" << endl;
     cout << "   \033[1;33m **********BEAT THE DEALER**********\033[0m" << endl;
