@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>      // for calling srand(), rand()
+#include <ctime>        // for calling time()
 #include "game.h"
 #include "mechanics.h"
 
