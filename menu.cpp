@@ -26,13 +26,11 @@ void newUser() { // create new user
   }
   User u(name);
   users.push_back(u);
-  
-  single(u);
 }
 
 void selectUser() { // select user to continue the past record
   if (users.size() == 0)
-    cout << "\033[1;31m--Error: No player record \033[0m " << endl;
+    cout << "\033[1;31m--Error: No player record \033[0m" << endl;
   else {
     cout << "Select a user: " << endl;
     for (int i = 0; i < users.size(); i++) {
@@ -46,7 +44,7 @@ void selectUser() { // select user to continue the past record
       cin >> u;
       if (u <= users.size())
         break;
-      cout << "\033[1;31m--Error: Please input a valid number \033[0m " << endl;
+      cout << "\033[1;31m--Error: Please input a valid number \033[0m" << endl;
     }
     single(users[u-1]);
   }
@@ -54,7 +52,7 @@ void selectUser() { // select user to continue the past record
 
 void printLeaderboard() { // print the Leaderboard
   if (users.size() == 0)
-    cout << "\033[1;31m--Error: No player record \033[0m " << endl;
+    cout << "\033[1;31m--Error: No player record \033[0m" << endl;
   else {
     cout << "\033[1;36m === Leaderboard: === \033[0m" << endl;
     vector<User> ranking = users;
@@ -62,19 +60,19 @@ void printLeaderboard() { // print the Leaderboard
 
     for (int i = 0; i < users.size(); i++)
       cout << "     " << "No." << i+1 << " " << ranking[i].name << " " << ranking[i].score << endl;
-    cout << "\033[1;36m ====================\033[0m" << endl;
+    cout << "\033[1;36m ==================== \033[0m" << endl;
   }
 }
 
 void loadGame() { // load game status from file
   string load_file;
-  cout << "\033[1;32mLoad from (file name): \033[0m ";
+  cout << "\033[1;32mLoad from (file name): \033[0m";
   cin >> load_file;
 
   ifstream fin(load_file.c_str());
 
   if (fin.fail())
-    cout << "\033[1;31m--File access error \033[0m " << endl;
+    cout << "\033[1;31m--File access error \033[0m" << endl;
   else {
     users.clear();
     string name;
@@ -90,13 +88,13 @@ void loadGame() { // load game status from file
 
 void saveGame() { // save game status from file
   string save_file;
-  cout << "\033[1;32mSave as (file name): \033[0m ";
+  cout << "\033[1;32mSave as (file name): \033[0m";
   cin >> save_file;
 
   ofstream fout(save_file.c_str());
 
   if (fout.fail())
-    cout << "\033[1;31m--File access error \033[0m " << endl;
+    cout << "\033[1;31m--File access error \033[0m" << endl;
   else {
     for (int i = 0; i < users.size(); i++)
       fout << users[i].name << ' ' << users[i].score << ' ' << users[i].level << ' ' << users[i].money << endl;
