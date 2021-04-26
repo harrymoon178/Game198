@@ -2,8 +2,8 @@
 #include <iomanip>      // for setw()
 #include "card.h"
 
-// Function: to declare the suits and ranks of the cards
-// Input: No input
+// Function: to construct a card
+// Input: suits and ranks
 // Output: No output
 Card::Card(int card_idx) {
   idx = card_idx;
