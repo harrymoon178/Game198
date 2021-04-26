@@ -62,7 +62,7 @@ void printLeaderboard() { // print the Leaderboard
 
     for (int i = 0; i < users.size(); i++)
       cout << "     " << "No." << i+1 << " " << ranking[i].name << " " << ranking[i].score << endl;
-    cout << "\033[1;36m =====================\033[0m" << endl;
+    cout << "\033[1;36m ====================\033[0m" << endl;
   }
 }
 
