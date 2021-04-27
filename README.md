@@ -73,3 +73,5 @@ Text-based game for engg1340/comp2113 project
 - type 4 to load game status from a file in the same directory as the program files
 - type 5 to save game status to a file in the same directory as the program files
 - type 6 to halt the program
+
+(academy11 was used for testing) the code can be successfully compiled in the Computer Science department's academy11 server.
